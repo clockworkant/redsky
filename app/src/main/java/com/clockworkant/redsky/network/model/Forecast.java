@@ -1,18 +1,14 @@
 package com.clockworkant.redsky.network.model;
 
+import java.util.List;
+
 public class Forecast {
-    private long dt;
-    private Main main;
+    long dt;
+    String dt_txt;
+    Main main;
+    List<Weather> weather;
 
-    public long getDateTime() {
-        return dt;
-    }
-
-    public float getTemp() {
-        return main.temp;
-    }
-
-    private static class Main {
+    static class Main {
         float temp;
         float temp_min;
         float temp_max;
@@ -21,5 +17,12 @@ public class Forecast {
         float grnd_level;
         float humidity;
         float temp_kf;
+    }
+
+    static class Weather {
+        int id;
+        String main;
+        String description;
+        String icon;
     }
 }

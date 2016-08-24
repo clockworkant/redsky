@@ -24,12 +24,13 @@ public class OpenWeatherApi {
         openWeatherApiService = retrofit.create(OpenWeatherApiService.class);
     }
 
-    public OpenWeatherApi(OpenWeatherApiService service){
+    public OpenWeatherApi(OpenWeatherApiService service) {
         openWeatherApiService = service;
         appId = "";
     }
 
-    public Observable<Forecast> listForecast(){
+    public Observable<Forecast> listForecast() {
+        //TODO parametrize this method to allow user selection
         return openWeatherApiService.listForecast("London, uk", OpenWeatherApiService.Units.metric, appId).flatMap(new Func1<ForecastResponse, Observable<Forecast>>() {
             @Override
             public Observable<Forecast> call(ForecastResponse forecastResponse) {
