@@ -40,6 +40,8 @@ public class OpenWeatherApiTest {
 
         Forecast forecast = forecastList.get(0);
         assertEquals(forecast.getDateTime(), 1471942800);
+        assertEquals(forecast.getTemp(), 298.15, 0.001);
+
     }
 
     @NonNull
