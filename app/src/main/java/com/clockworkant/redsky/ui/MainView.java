@@ -1,9 +1,14 @@
 package com.clockworkant.redsky.ui;
 
-import com.clockworkant.redsky.network.model.Forecast;
+
+import java.util.List;
 
 public interface MainView {
     void showError(String message);
 
-    void showForecast(Forecast forecast);
+    void showForecasts(List<ForecastViewModel> forecast);
+
+    void showLoading(boolean isLoading);
+
+    void clearForecasts();
 }

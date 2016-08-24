@@ -1,8 +1,6 @@
 package com.clockworkant.redsky.network;
 
-import com.clockworkant.redsky.network.model.Forecast;
 import com.clockworkant.redsky.network.model.ForecastResponse;
-
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -29,4 +27,6 @@ public interface OpenWeatherApiService {
     Observable<ForecastResponse> listForecast(@Query("q") String location,
                                               @Query("units") Units unit,
                                               @Query("appid") String appId);
+
+    //TODO model api call to fetch icon //http://openweathermap.org/img/w/01d.png
 }

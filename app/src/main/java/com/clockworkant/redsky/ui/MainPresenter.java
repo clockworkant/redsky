@@ -1,7 +1,9 @@
 package com.clockworkant.redsky.ui;
 
 import com.clockworkant.redsky.network.OpenWeatherApi;
-import com.clockworkant.redsky.network.model.Forecast;
+import com.clockworkant.redsky.network.model.ForecastViewModelConverter;
+
+import java.util.List;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -17,22 +19,28 @@ public class MainPresenter {
     }
 
     public void onRefresh() {
+        view.showLoading(true);
+        view.clearForecasts();
         weatherApi.listForecast()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Forecast>() {
+                .map(new ForecastViewModelConverter())
+                .toList()
+                .subscribe(new Observer<List<ForecastViewModel>>() {
                     @Override
                     public void onCompleted() {
+                        view.showLoading(false);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         view.showError(e.getMessage());
+                        view.showLoading(false);
                     }
 
                     @Override
-                    public void onNext(Forecast forecast) {
-                        view.showForecast(forecast);
+                    public void onNext(List<ForecastViewModel> forecastViewModels) {
+                        view.showForecasts(forecastViewModels);
                     }
                 });
     }

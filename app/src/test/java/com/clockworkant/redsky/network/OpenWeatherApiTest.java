@@ -19,7 +19,6 @@ import rx.observers.TestSubscriber;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -37,11 +36,6 @@ public class OpenWeatherApiTest {
         List<Forecast> forecastList = testSubscriber.getOnNextEvents();
 
         assertThat(forecastList, hasSize(37));
-
-        Forecast forecast = forecastList.get(0);
-        assertEquals(forecast.getDateTime(), 1471942800);
-        assertEquals(forecast.getTemp(), 298.15, 0.001);
-
     }
 
     @NonNull
